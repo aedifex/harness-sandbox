@@ -5,33 +5,64 @@ pipeline:
   orgIdentifier: default
   tags: {}
   stages:
-    - stage:
-        name: Build 1
-        identifier: Build_1
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: false
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
-          execution:
-            steps:
-              - parallel:
-                  - step:
-                      type: Run
-                      name: Hello
-                      identifier: Hello
-                      spec:
-                        shell: Sh
-                        command: echo "hello world"
-                  - step:
-                      type: Run
-                      name: Another Hello
-                      identifier: Another_Hello
-                      spec:
-                        shell: Sh
-                        command: echo "ave mundus"
+    - parallel:
+        - stage:
+            name: Build 1
+            identifier: Build_1
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: false
+              platform:
+                os: Linux
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - parallel:
+                      - step:
+                          type: Run
+                          name: Hello
+                          identifier: Hello
+                          spec:
+                            shell: Sh
+                            command: echo "hello world"
+                      - step:
+                          type: Run
+                          name: Another Hello
+                          identifier: Another_Hello
+                          spec:
+                            shell: Sh
+                            command: echo "ave mundus"
+        - stage:
+            name: Build Rust
+            identifier: Build_Rust
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: false
+              platform:
+                os: Windows
+                arch: Amd64
+              runtime:
+                type: Cloud
+                spec: {}
+              execution:
+                steps:
+                  - parallel:
+                      - step:
+                          type: Run
+                          name: Hi
+                          identifier: Hi
+                          spec:
+                            shell: Powershell
+                            command: Write-Host 'Hello, World!'
+                      - step:
+                          type: Run
+                          name: Oh hello
+                          identifier: Oh_hello
+                          spec:
+                            shell: Powershell
+                            command: "'Hello, World!' | Write-Host"
