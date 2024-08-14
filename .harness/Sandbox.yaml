@@ -84,5 +84,5 @@ pipeline:
                     headers: []
                     inputVariables: []
                     outputVariables: []
-                  timeout: 10s
+                  timeout: 1m
         tags: {}
