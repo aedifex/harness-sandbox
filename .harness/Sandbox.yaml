@@ -7,7 +7,7 @@ pipeline:
   stages:
     - parallel:
         - stage:
-            name: Build 1
+            name: Build Go
             identifier: Build_1
             description: ""
             type: CI
@@ -36,6 +36,9 @@ pipeline:
                           spec:
                             shell: Sh
                             command: echo "ave mundus"
+              caching:
+                enabled: false
+                paths: []
         - stage:
             name: Build Rust
             identifier: Build_Rust
