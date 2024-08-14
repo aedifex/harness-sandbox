@@ -66,3 +66,23 @@ pipeline:
                           spec:
                             shell: Powershell
                             command: "'Hello, World!' | Write-Host"
+    - stage:
+        name: post deployment check
+        identifier: post_deployment_check
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: Http
+                  name: Post deployment check
+                  identifier: Post_deployment_check
+                  spec:
+                    url: https://httpbin.org/get
+                    method: GET
+                    headers: []
+                    inputVariables: []
+                    outputVariables: []
+                  timeout: 10s
+        tags: {}
