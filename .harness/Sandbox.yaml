@@ -60,8 +60,8 @@ pipeline:
                           name: Hi
                           identifier: Hi
                           spec:
-                            shell: Powershell
-                            command: Write-Host 'Hello, World!'
+                            shell: Bash
+                            command: exit 137
                       - step:
                           type: Run
                           name: Oh hello
