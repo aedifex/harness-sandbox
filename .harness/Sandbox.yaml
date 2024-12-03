@@ -60,7 +60,7 @@ pipeline:
                           name: Hi
                           identifier: Hi
                           spec:
-                            shell: Bash
+                            shell: Sh
                             command: exit 137
                       - step:
                           type: Run
