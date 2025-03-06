@@ -89,6 +89,37 @@ pipeline:
                     outputVariables: []
                   timeout: 1m
         tags: {}
+    - stage:
+        name: Envars
+        identifier: Envars
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: false
+          platform:
+            os: Windows
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Print Metadata
+                  identifier: Print_Metadata
+                  spec:
+                    shell: Sh
+                    command: |-
+                      echo <+pipeline.executionId>        # Output example: 1234-5678-abcd
+                      echo <+pipeline.sequenceId>         # Output example: 16
+                      echo <+stage.name>                  # Output example: dev
+                      echo <+service.name>                # Output example: nginx
+                      echo <+artifacts.primary.image>     # Output example: index.docker.io/library/nginx:stable
+                      echo <+artifacts.primary.imagePath> # Output example: library/nginx
+                      echo <+env.name>                    # Output example: demo
+                      echo <+infra.namespace>             # Output example: default
+                      echo <+infra.releaseName>           # Output example: demo
   notificationRules:
     - name: Webhook
       identifier: Webhook
