@@ -61,7 +61,7 @@ pipeline:
                           identifier: Hi
                           spec:
                             shell: Sh
-                            command: exit 137
+                            command: echo "Hello!"
                       - step:
                           type: Run
                           name: Oh hello
