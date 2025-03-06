@@ -91,11 +91,15 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
+                      export PIPELINE_NAME="<+pipeline.name>"
+                      export PIPELINE_STATUS="<+pipeline.status>"
+                      export EXECUTION_ID="<+pipeline.executionId>"
+
                       curl -X POST -H "Content-Type: application/json" \
                           --data '{
-                              "text": "Pipeline <+pipeline.name> executed with status <+pipeline.status>. Execution ID: <+pipeline.executionId>"
+                              "text": "Pipeline '"$PIPELINE_NAME"' executed with status '"$PIPELINE_STATUS"'. Execution ID: '"$EXECUTION_ID"'"
                           }' \
-                          https://hooks.slack.com/services/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
+                          "https://hooks.slack.com/services/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"
   notificationRules:
     - name: Webhook
       identifier: Webhook
