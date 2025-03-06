@@ -91,15 +91,13 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      echo <+pipeline.executionId>        # Output example: 1234-5678-abcd
-                      echo <+pipeline.sequenceId>         # Output example: 16
-                      echo <+stage.name>                  # Output example: dev
-                      echo <+service.name>                # Output example: nginx
-                      echo <+artifacts.primary.image>     # Output example: index.docker.io/library/nginx:stable
-                      echo <+artifacts.primary.imagePath> # Output example: library/nginx
-                      echo <+env.name>                    # Output example: demo
-                      echo <+infra.namespace>             # Output example: default
-                      echo <+infra.releaseName>           # Output example: demo
+                      echo <+pipeline.name>             # Output example: My_Pipeline_Name
+                      echo <+pipeline.executionId>      # Output example: 1234-5678-abcd
+                      echo <+pipeline.sequenceId>       # Output example: 16
+                      echo <+pipeline.status>           # Output example: SUCCESS
+                      echo <+pipeline.triggeredBy.name> # Output example: john.doe@example.com
+                      echo <+project.name>              # Output example: My_Project_Name
+                      echo <+org.name>                  # Output example: My_Organization_Name
   notificationRules:
     - name: Webhook
       identifier: Webhook
