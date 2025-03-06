@@ -82,11 +82,15 @@ pipeline:
                   name: Post deployment check
                   identifier: Post_deployment_check
                   spec:
-                    url: https://httpbin.org/get
-                    method: GET
+                    url: https://httpbin.org/post
+                    method: POST
                     headers: []
                     inputVariables: []
                     outputVariables: []
+                    requestBody: |-
+                      {
+                        "text": "Pipeline ${pipeline.name} completed with status ${pipeline.execution.status}."
+                      }
                   timeout: 1m
         tags: {}
     - stage:
