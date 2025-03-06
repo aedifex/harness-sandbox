@@ -70,35 +70,6 @@ pipeline:
                             shell: Powershell
                             command: "'Hello, World!' | Write-Host"
     - stage:
-        name: post deployment check
-        identifier: post_deployment_check
-        description: ""
-        type: Custom
-        spec:
-          execution:
-            steps:
-              - step:
-                  type: Http
-                  name: Post deployment check
-                  identifier: Post_deployment_check
-                  spec:
-                    url: https://httpbin.org/post
-                    method: POST
-                    headers: []
-                    inputVariables: []
-                    outputVariables: []
-                    requestBody: |-
-                      {
-                        "text": "Pipeline ${pipeline.name} completed with status ${pipeline.execution.status}."
-                      }
-                  timeout: 1m
-          environment:
-            environmentRef: harnessdevenv
-            deployToAll: false
-            infrastructureDefinitions:
-              - identifier: harnessk8sinfra
-        tags: {}
-    - stage:
         name: Envars
         identifier: Envars
         description: ""
