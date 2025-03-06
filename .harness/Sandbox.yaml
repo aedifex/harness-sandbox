@@ -86,18 +86,16 @@ pipeline:
             steps:
               - step:
                   type: Run
-                  name: Print Metadata
+                  name: Custom Curl Command
                   identifier: Print_Metadata
                   spec:
                     shell: Sh
                     command: |-
-                      echo <+pipeline.name>             # Output example: My_Pipeline_Name
-                      echo <+pipeline.executionId>      # Output example: 1234-5678-abcd
-                      echo <+pipeline.sequenceId>       # Output example: 16
-                      echo <+pipeline.status>           # Output example: SUCCESS
-                      echo <+pipeline.triggeredBy.name> # Output example: john.doe@example.com
-                      echo <+project.name>              # Output example: My_Project_Name
-                      echo <+org.name>                  # Output example: My_Organization_Name
+                      curl -X POST -H "Content-Type: application/json" \
+                          --data '{
+                              "text": "Pipeline <+pipeline.name> executed with status <+pipeline.status>. Execution ID: <+pipeline.executionId>"
+                          }' \
+                          https://hooks.slack.com/services/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
   notificationRules:
     - name: Webhook
       identifier: Webhook
