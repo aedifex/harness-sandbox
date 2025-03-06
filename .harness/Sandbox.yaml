@@ -92,6 +92,11 @@ pipeline:
                         "text": "Pipeline ${pipeline.name} completed with status ${pipeline.execution.status}."
                       }
                   timeout: 1m
+          environment:
+            environmentRef: harnessdevenv
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: harnessk8sinfra
         tags: {}
     - stage:
         name: Envars
